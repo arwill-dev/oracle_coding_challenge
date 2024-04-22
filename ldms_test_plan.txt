@@ -1,0 +1,82 @@
+-- This gives an idea of how an actual manual test plan will look.
+-- It aims to test that all the departments and employees have been created successfully.
+-- It will also test one 'success' condition for each of the subprograms in the pkg_employee package.
+
+-- A full test plan will follow the same pattern but will need to be extended for each of the subprograms to include 
+-- additional test cases for 'success' conditions and multiple test cases for different exception or failure conditions.
+
+
+-- Test Case 1 (Department Records created)
+-- Run the following statement in SQL*Plus to view all the Department records.
+-- Compare the results with the department values in the specifications document.
+SELECT * FROM departments;
+
+
+-- Test Case 2 (Employee Records created)
+-- Run the following statement in SQL*Plus to view all the Employee records.
+-- Compare the results with the employee values in the specifications document.
+SELECT * FROM employees;
+
+
+-- Test Case 3a (Create New Employee)
+-- Run the following anonymous block in SQL*Plus. 
+-- You should get a screen output message displaying the new employee ID created.
+SET SERVEROUTPUT ON
+DECLARE
+emp_id NUMBER;
+
+BEGIN 
+
+  emp_id := pkg_employee.create_employee(p_emp_name       => 'Test1 Employee', 
+                                         p_emp_job_title  => 'Engineer', 
+                                         p_emp_date_hired => SYSDATE, 
+                                         p_emp_salary     => 20000, 
+                                         p_dept_id        => 4,
+						                 p_emp_manager_id => 90001);
+										  
+  dbms_output.put_line('New Employee ID: '||emp_id);
+
+END;
+/
+
+-- Test Case 3b (Confirm New Employee Created)
+-- Run the following statement to confirm that the new employee has been created.
+SELECT * FROM employees;
+
+
+-- Test Case 4a (Change Employee Salary)
+-- Run the following statment in SQL*Plus to change the salary for the employee with ID 90005 by 10%.
+EXECUTE pkg_employee.change_salary(p_emp_id => 90005, p_percentage_change => 10);
+
+-- Test Case 4b(Confirm Salary Change)
+-- Run the following statement to confirm that the salary has changed from 40000 to 44000.
+SELECT * FROM employees;
+
+
+-- Test Case 5a (Change Employee Department)
+-- Run the following statement in SQL*Plus to change the department for employee 90007 to department ID 4.
+EXECUTE pkg_employee.change_dept(p_emp_id => 90007, p_new_dept_id => 4);
+
+-- Test Case 5b(Confirm Department Change)
+-- Run the following statement to confirm that the department has changed to 4.
+SELECT * FROM employees;
+
+
+-- Test Case 6a
+-- Run the Following anonymous block in SQL*Plus
+-- You should get a screen output message displaying the employee Salary for the employee with ID 90001.
+SET SERVEROUTPUT ON
+DECLARE
+v_sal NUMBER;
+
+BEGIN 
+
+  v_sal := pkg_employee.get_salary(p_emp_id => 90001);
+										  
+  dbms_output.put_line('Employee Salary is: '||v_sal);
+
+END;
+/
+
+-- Test Case 6b
+-- Compare the salary returned in 6a with the salary for employee 90001 from the specifications document.
