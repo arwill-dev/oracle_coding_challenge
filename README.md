@@ -29,12 +29,14 @@ Run Instructions (Windows):
 
 
 -- To generate the report showing all employees for a given department, run the script below. 
+
 -- It will prompt for the department and then create a txt file with the requested data.
 
 @ldms_dept_employees_report.sql
 
 
--- To generate the report showing the total of employee salary for a given department, run the script below. 
+-- To generate the report showing the total of employee salary for a given department, run the script below.
+
 -- It will prompt for the department and then create a txt file with the requested data.
 
 @ldms_dept_salary_report.sql
