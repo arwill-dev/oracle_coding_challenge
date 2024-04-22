@@ -15,7 +15,6 @@ Build Instructions (Windows):
 @pkg_employee.pkb
 
 
-
 Run Instructions (Windows):
 
 -- Please refer to the test plan (ldms_test_plan.txt) to see sample calls for each of the subprograms below.
@@ -29,17 +28,16 @@ Run Instructions (Windows):
 -- To get an employee's salary, call the package function pkg_employee.get_salary.
 
 
-
--- To generate the report showing all employees for a given department, run the script below. -- It will prompt for the department and then create a txt file with the requested data.
+-- To generate the report showing all employees for a given department, run the script below. 
+-- It will prompt for the department and then create a txt file with the requested data.
 
 @ldms_dept_employees_report.sql
 
 
-
--- To generate the report showing the total of employee salary for a given department, run the script below. -- It will prompt for the department and then create a txt file with the requested data.
+-- To generate the report showing the total of employee salary for a given department, run the script below. 
+-- It will prompt for the department and then create a txt file with the requested data.
 
 @ldms_dept_salary_report.sql
-
 
 
 -- To rollback all the changes, run the script below.
